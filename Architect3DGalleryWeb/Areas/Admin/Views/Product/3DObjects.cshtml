@@ -1,0 +1,61 @@
+@model IEnumerable<LCDSArtGallery.Models.Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>3D Objects Category</h2>
+  <table class= "table table-table-bordered table-table-striped">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                 <th>Product Price</th>
+                <th>Product Type Name</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+             <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.ProductType.Name</td>
+
+            </tr>
+            }
+           
+
+        </tbody>
+    </table>
+
+
+@*</table>
+	<div class="cards pt-4 mt-4">
+         @foreach (var product in Model)
+        {
+		<div class="card-item">
+			<div class="card-body">
+                <img src="@product.ImageUrl" class="card-img" />
+                 <div class="d-flex align-items-center justify-content-around py-3">
+				<h2 class="card-title center">@product.Name</h2>
+                <p class="text-justify text-right">Price:$@product.Price.ToString("0.00")</p>
+                </div>
+                    <p class="text-center">@product.Description</p>
+				<div class="center" style="margin: 0 auto;">
+					<a asp-action="Details" class="btn1" asp-route-id="@product.Id">Details</a>
+				</div>
+			</div>
+		</div>
+       }
+	</div>
+<br />
+*@
+@*
+    Need Pagination or delete this statement
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@

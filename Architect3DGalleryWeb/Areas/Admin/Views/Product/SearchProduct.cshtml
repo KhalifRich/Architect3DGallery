@@ -1,0 +1,66 @@
+@model PagedList.IPagedList<LCDSArtGallery.Models.Product>
+@using PagedList.Mvc; 
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Products";
+}
+<head>
+     
+</head>
+<h2>Products</h2>
+
+
+@using (Html.BeginForm("SearchProduct", "Product", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)  
+        <input type="submit" id="searchString" value="Search" />
+    </p>
+}
+<table>
+<tr>
+    <th></th>
+    <th>
+        @Html.ActionLink("Name", "SearchProduct", new { sortOrder=ViewBag.NameSortParm, currentFilter=ViewBag.CurrentFilter })
+    </th>
+    <th>
+       
+    </th>
+    <th>
+        @Html.ActionLink("Size", "SearchProduct", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+    </th>
+</tr>
+
+</table>
+	<div class="cards pt-4 mt-4">
+         @foreach (var product in Model)
+        {
+		<div class="card-item">
+			<div class="card-body">
+                <img src="@product.ImageUrl" class="card-img" />
+                 <div class="d-flex align-items-center justify-content-around py-3">
+				<h2 class="card-title center">@product.Name</h2>
+                <p class="text-justify text-right">Price:$@product.Price.ToString("0.00")</p>
+               
+                </div>
+                    <p class="text-center">@product.Description</p>
+				<div class="center" style="margin: 0 auto;">
+					<a asp-action="Details" class="btn1" asp-route-id="@product.Id">Details</a>
+				</div>
+			</div>
+		</div>
+       }
+	</div>
+
+<br />
+ 
+
+@*
+    Need Pagination or delete this statement
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
