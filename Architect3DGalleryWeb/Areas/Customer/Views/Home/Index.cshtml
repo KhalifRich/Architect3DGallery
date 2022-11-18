@@ -1,0 +1,71 @@
+@model IEnumerable<Architect3DGallery.Models.Product>
+
+<div class="container w-75">
+     <div id="buildingExampleIndicators" class="building slide" data-ride="building">
+          <ol class="building-indicators">
+            <li data-target="#buildingExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#buildingExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#buildingExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="building-inner">
+            <div class="building-item active building-image">
+              <img class="d-block w-100" src="~/images/home/building.obj" alt="First slide">
+                <div class="building-caption d-none d-md-block">
+                    <h5>Explore Artworks at the Architect 3D Gallery </h5>
+                    <p>Architect 3D Gallery is a contemporary fine art gallery located in major cities in the United States and Europe.
+                        With the belief that art is a universal language that bridges cultures and forms human connections, 
+                        we strive to create unforgettable exhibitions and events that bring color and inspiration to life’s every moment.</p>
+                </div>
+            </div>
+            <div class="building-item building-image">
+              <img class="d-block w-100" src="~/images/home/building.obj" alt="Second slide">
+                  <div class="building-caption d-none d-md-block">
+                     <h5>...</h5>
+                      <p>...</p>
+                  </div>
+            </div>
+            <div class="building-item building-image">
+              <img class="d-block w-100" src="~/images/home/building.obj" alt="Third slide">
+                  <div class="building-caption d-none d-md-block">
+                       <h5>A Vibrant World of Contemporary Art</h5>
+                      <p>Architect Gallery represents brilliant contemporary artists worldwide, displaying their art in breathtaking
+                    galleries in some of the top premium locations around the world</p>          
+                  </div>
+            </div>
+          </div>
+          <a class="building-control-prev" href="#buildingExampleIndicators" role="button" data-slide="prev">
+            <span class="building-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="building-control-next" href="#buildingExampleIndicators" role="button" data-slide="next">
+            <span class="building-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+    </div>
+
+
+	<div class="cards pt-4 mt-4">
+         @foreach (var product in Model)
+        {
+		<div class="card-item">
+			<div class="card-body">
+                <img src="@product.ImageUrl" class="card-img" />
+                 <div class="d-flex align-items-center justify-content-around py-3">
+				<h2 class="card-title center">@product.Name</h2>
+                <p class="text-justify text-right">Price:$@product.Price.ToString("0.00")</p>
+               
+                </div>
+                    <p class="text-center">@product.Description</p>
+				<div class="center" style="margin: 0 auto;">
+					<a asp-action="Details" class="btn1" asp-route-id="@product.Id">Details</a>
+				</div>
+			</div>
+		</div>
+       }
+	</div>
+
+
+@section Scripts{
+
+    <script src="~/js/product.js"></script>
